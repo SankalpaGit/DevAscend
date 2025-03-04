@@ -1,0 +1,88 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Layout.Master.cs" Inherits="DatbaseCW.Layout" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>DevAscend</title>
+    <style>
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px; /* Increased width for better layout */
+            background: #16A085; /* Teal background */
+            color: white;
+            height: 100vh;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            position: fixed; /* Keep it fixed on the left */
+            top: 0;
+            left: 0;
+            z-index: 100; /* Ensure sidebar stays above content */
+        }
+
+        .sidebar h3 {
+            margin-bottom: 30px;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin: 10px 0;
+            padding: 12px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ;
+        }
+
+        /* Hover effect for li */
+        .sidebar li:hover {
+            background: #1ABC9C; /* Darker teal on hover */
+        }
+
+        .sidebar li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block; /* Make the entire li area clickable */
+        }
+
+        /* Content Styles */
+        .content {
+            margin-left: 290px; /* Adjusted for sidebar width */
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+       
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <h3>Dev Ascend</h3>
+                <ul>
+                    <li><a href='<%= ResolveUrl("~/Pages/Dashboard.aspx") %>'>Dashboard</a></li>
+                    <li><a href='<%= ResolveUrl("~/Pages/Employee.aspx") %>'>Employee</a></li>
+                    <li><a href='<%= ResolveUrl("~/Pages/Project.aspx") %>'>Project</a></li>
+                    <li><a href='<%= ResolveUrl("~/Pages/Tasks.aspx") %>'>Task</a></li>
+                    <li><a href='<%= ResolveUrl("~/Pages/SubTask.aspx") %>'>Sub Task</a></li>
+                    <li><a href='<%= ResolveUrl("~/Pages/Milestone.aspx") %>'>Milestone</a></li>
+                </ul>
+            </div>
+
+            <!-- Header & Content -->
+            <div class="content">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
