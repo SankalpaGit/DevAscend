@@ -9,5 +9,10 @@ namespace DatbaseCW.Pages  // Ensure this matches the namespace
         {
             // Any initialization logic if needed
         }
+
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
