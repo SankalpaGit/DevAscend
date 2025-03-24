@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>DevAscend</title>
+    <title>Web Forms</title>
     <style>
         /* Sidebar Styles */
         .sidebar {
@@ -67,7 +67,6 @@
         <div>
             <!-- Sidebar -->
             <div class="sidebar">
-                <h3>Dev Ascend</h3>
                 <ul>
                     <li><a href='<%= ResolveUrl("~/Pages/Dashboard.aspx") %>'>Dashboard</a></li>
                     <li><a href='<%= ResolveUrl("~/Pages/Employee.aspx") %>'>Employee</a></li>

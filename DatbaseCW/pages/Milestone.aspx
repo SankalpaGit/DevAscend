@@ -2,9 +2,11 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
    
-    <h3>List of Milestone</h3>
-<p>
-    <asp:FormView ID="FormView2" runat="server" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" DataKeyNames="MILESTONEID" DataSourceID="SqlDataSource2" GridLines="Horizontal">
+    <h3>Add/Update Milestone</h3>
+
+   
+    <asp:FormView ID="FormView2" runat="server" DataKeyNames="MILESTONEID" 
+                  DataSourceID="SqlDataSource2" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="4"  GridLines="Horizontal">
         <EditItemTemplate>
             MILESTONEID:
             <asp:Label ID="MILESTONEIDLabel1" runat="server" Text='<%# Eval("MILESTONEID") %>' />
@@ -15,15 +17,20 @@
             MILESTONEDATE:
             <asp:TextBox ID="MILESTONEDATETextBox" runat="server" Text='<%# Bind("MILESTONEDATE") %>' />
             <br />
-            PROJECTID:
-            <asp:TextBox ID="PROJECTIDTextBox" runat="server" Text='<%# Bind("PROJECTID") %>' />
+            PROJECT ID:
+            <asp:DropDownList ID="PROJECTIDDropDown" runat="server" DataSourceID="SqlDataSourceProjects"
+                              DataTextField="PROJECTID" DataValueField="PROJECTID" 
+                              SelectedValue='<%# Bind("PROJECTID") %>'>
+            </asp:DropDownList>
             <br />
-            <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" />
-            &nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
+            <asp:LinkButton ID="UpdateButton" runat="server" CommandName="Update" Text="Update" />
+            <asp:LinkButton ID="UpdateCancelButton" runat="server" CommandName="Cancel" Text="Cancel" />
         </EditItemTemplate>
+
         <EditRowStyle BackColor="#738A9C" Font-Bold="True" ForeColor="#F7F7F7" />
         <FooterStyle BackColor="#B5C7DE" ForeColor="#4A3C8C" />
         <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#F7F7F7" />
+
         <InsertItemTemplate>
             MILESTONEID:
             <asp:TextBox ID="MILESTONEIDTextBox" runat="server" Text='<%# Bind("MILESTONEID") %>' />
@@ -34,76 +41,108 @@
             MILESTONEDATE:
             <asp:TextBox ID="MILESTONEDATETextBox" runat="server" Text='<%# Bind("MILESTONEDATE") %>' />
             <br />
-            PROJECTID:
-            <asp:TextBox ID="PROJECTIDTextBox" runat="server" Text='<%# Bind("PROJECTID") %>' />
+            PROJECT ID:
+            <asp:DropDownList ID="PROJECTIDDropDownInsert" runat="server" DataSourceID="SqlDataSourceProjects"
+                              DataTextField="PROJECTID" DataValueField="PROJECTID"
+                              SelectedValue='<%# Bind("PROJECTID") %>'>
+            </asp:DropDownList>
             <br />
-            <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
-            &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
+            <asp:LinkButton ID="InsertButton" runat="server" CommandName="Insert" Text="Insert" />
+            <asp:LinkButton ID="InsertCancelButton" runat="server" CommandName="Cancel" Text="Cancel" />
         </InsertItemTemplate>
+
         <ItemTemplate>
             MILESTONEID:
             <asp:Label ID="MILESTONEIDLabel" runat="server" Text='<%# Eval("MILESTONEID") %>' />
             <br />
             MILESTONENAME:
-            <asp:Label ID="MILESTONENAMELabel" runat="server" Text='<%# Bind("MILESTONENAME") %>' />
+            <asp:Label ID="MILESTONENAMELabel" runat="server" Text='<%# Eval("MILESTONENAME") %>' />
             <br />
             MILESTONEDATE:
-            <asp:Label ID="MILESTONEDATELabel" runat="server" Text='<%# Bind("MILESTONEDATE") %>' />
+            <asp:Label ID="MILESTONEDATELabel" runat="server" Text='<%# Eval("MILESTONEDATE") %>' />
             <br />
-            PROJECTID:
-            <asp:Label ID="PROJECTIDLabel" runat="server" Text='<%# Bind("PROJECTID") %>' />
+            PROJECT ID:
+            <asp:Label ID="PROJECTIDLabel" runat="server" Text='<%# Eval("PROJECTID") %>' />
             <br />
-            <asp:LinkButton ID="EditButton" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" />
-            &nbsp;<asp:LinkButton ID="DeleteButton" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" />
-            &nbsp;<asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="New" />
+            <asp:LinkButton ID="EditButton" runat="server" CommandName="Edit" Text="Edit" />
+            <asp:LinkButton ID="DeleteButton" runat="server" CommandName="Delete" Text="Delete" />
+            <asp:LinkButton ID="NewButton" runat="server" CommandName="New" Text="New" />
         </ItemTemplate>
         <PagerStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" HorizontalAlign="Right" />
         <RowStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" />
     </asp:FormView>
-</p>
-    <p>
-        <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" DataKeyNames="MILESTONEID" DataSourceID="SqlDataSource2" GridLines="Horizontal">
-            <AlternatingRowStyle BackColor="#F7F7F7" />
-            <Columns>
-                <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
-                <asp:BoundField DataField="MILESTONEID" HeaderText="MILESTONEID" ReadOnly="True" SortExpression="MILESTONEID" />
-                <asp:BoundField DataField="MILESTONENAME" HeaderText="MILESTONENAME" SortExpression="MILESTONENAME" />
-                <asp:BoundField DataField="MILESTONEDATE" HeaderText="MILESTONEDATE" SortExpression="MILESTONEDATE" />
-                <asp:BoundField DataField="PROJECTID" HeaderText="PROJECTID" SortExpression="PROJECTID" />
-            </Columns>
-            <FooterStyle BackColor="#B5C7DE" ForeColor="#4A3C8C" />
-            <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#F7F7F7" />
-            <PagerStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" HorizontalAlign="Right" />
-            <RowStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" />
-            <SelectedRowStyle BackColor="#738A9C" Font-Bold="True" ForeColor="#F7F7F7" />
-            <SortedAscendingCellStyle BackColor="#F4F4FD" />
-            <SortedAscendingHeaderStyle BackColor="#5A4C9D" />
-            <SortedDescendingCellStyle BackColor="#D8D8F0" />
-            <SortedDescendingHeaderStyle BackColor="#3E3277" />
-        </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConflictDetection="CompareAllValues" ConnectionString="<%$ ConnectionStrings:ConnectionStringmain %>" DeleteCommand="DELETE FROM &quot;MILESTONE&quot; WHERE &quot;MILESTONEID&quot; = :original_MILESTONEID AND ((&quot;MILESTONENAME&quot; = :original_MILESTONENAME) OR (&quot;MILESTONENAME&quot; IS NULL AND :original_MILESTONENAME IS NULL)) AND ((&quot;MILESTONEDATE&quot; = :original_MILESTONEDATE) OR (&quot;MILESTONEDATE&quot; IS NULL AND :original_MILESTONEDATE IS NULL)) AND &quot;PROJECTID&quot; = :original_PROJECTID" InsertCommand="INSERT INTO &quot;MILESTONE&quot; (&quot;MILESTONEID&quot;, &quot;MILESTONENAME&quot;, &quot;MILESTONEDATE&quot;, &quot;PROJECTID&quot;) VALUES (:MILESTONEID, :MILESTONENAME, :MILESTONEDATE, :PROJECTID)" OldValuesParameterFormatString="original_{0}" ProviderName="<%$ ConnectionStrings:ConnectionStringmain.ProviderName %>" SelectCommand="SELECT * FROM &quot;MILESTONE&quot;" UpdateCommand="UPDATE &quot;MILESTONE&quot; SET &quot;MILESTONENAME&quot; = :MILESTONENAME, &quot;MILESTONEDATE&quot; = :MILESTONEDATE, &quot;PROJECTID&quot; = :PROJECTID WHERE &quot;MILESTONEID&quot; = :original_MILESTONEID AND ((&quot;MILESTONENAME&quot; = :original_MILESTONENAME) OR (&quot;MILESTONENAME&quot; IS NULL AND :original_MILESTONENAME IS NULL)) AND ((&quot;MILESTONEDATE&quot; = :original_MILESTONEDATE) OR (&quot;MILESTONEDATE&quot; IS NULL AND :original_MILESTONEDATE IS NULL)) AND &quot;PROJECTID&quot; = :original_PROJECTID">
-            <DeleteParameters>
-                <asp:Parameter Name="original_MILESTONEID" Type="Decimal" />
-                <asp:Parameter Name="original_MILESTONENAME" Type="String" />
-                <asp:Parameter Name="original_MILESTONEDATE" Type="DateTime" />
-                <asp:Parameter Name="original_PROJECTID" Type="Decimal" />
-            </DeleteParameters>
-            <InsertParameters>
-                <asp:Parameter Name="MILESTONEID" Type="Decimal" />
-                <asp:Parameter Name="MILESTONENAME" Type="String" />
-                <asp:Parameter Name="MILESTONEDATE" Type="DateTime" />
-                <asp:Parameter Name="PROJECTID" Type="Decimal" />
-            </InsertParameters>
-            <UpdateParameters>
-                <asp:Parameter Name="MILESTONENAME" Type="String" />
-                <asp:Parameter Name="MILESTONEDATE" Type="DateTime" />
-                <asp:Parameter Name="PROJECTID" Type="Decimal" />
-                <asp:Parameter Name="original_MILESTONEID" Type="Decimal" />
-                <asp:Parameter Name="original_MILESTONENAME" Type="String" />
-                <asp:Parameter Name="original_MILESTONEDATE" Type="DateTime" />
-                <asp:Parameter Name="original_PROJECTID" Type="Decimal" />
-            </UpdateParameters>
-        </asp:SqlDataSource>
-</p>
+
+      <br />
+  <h3>Milestone List</h3>
+   
+    <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+                  DataKeyNames="MILESTONEID" DataSourceID="SqlDataSource2" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" Width="100%" CellPadding="10" GridLines="Horizontal">
+        <AlternatingRowStyle BackColor="#F7F7F7" />
+        <Columns>
+            <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
+            <asp:BoundField DataField="MILESTONEID" HeaderText="MILESTONEID" ReadOnly="True" />
+            <asp:BoundField DataField="MILESTONENAME" HeaderText="MILESTONENAME" />
+            <asp:BoundField DataField="MILESTONEDATE" HeaderText="MILESTONEDATE" />
+            <asp:TemplateField HeaderText="PROJECT ID">
+                <EditItemTemplate>
+                    <asp:DropDownList ID="PROJECTIDDropDownGrid" runat="server" DataSourceID="SqlDataSourceProjects"
+                                      DataTextField="PROJECTID" DataValueField="PROJECTID" 
+                                      SelectedValue='<%# Bind("PROJECTID") %>'>
+                    </asp:DropDownList>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label ID="PROJECTIDLabelGrid" runat="server" Text='<%# Eval("PROJECTID") %>' />
+                </ItemTemplate>
+            </asp:TemplateField>
+        </Columns>
+        <FooterStyle BackColor="#B5C7DE" ForeColor="#4A3C8C" />
+        <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#F7F7F7" />
+        <PagerStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" HorizontalAlign="Center" />
+        <RowStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" />
+        <SelectedRowStyle BackColor="#738A9C" Font-Bold="True" ForeColor="#F7F7F7" />
+        <SortedAscendingCellStyle BackColor="#F4F4FD" />
+        <SortedAscendingHeaderStyle BackColor="#5A4C9D" />
+        <SortedDescendingCellStyle BackColor="#D8D8F0" />
+        <SortedDescendingHeaderStyle BackColor="#3E3277" />
+    </asp:GridView>
+
+   
+    <asp:SqlDataSource ID="SqlDataSource2" runat="server" 
+    ConnectionString="<%$ ConnectionStrings:ConnectionStringmain %>"
+    ProviderName="<%$ ConnectionStrings:ConnectionStringmain.ProviderName %>"
+    SelectCommand="SELECT * FROM MILESTONE"
+    InsertCommand="INSERT INTO MILESTONE (MILESTONEID, MILESTONENAME, MILESTONEDATE, PROJECTID) 
+                   VALUES (:MILESTONEID, :MILESTONENAME, :MILESTONEDATE, :PROJECTID)"
+    UpdateCommand="UPDATE MILESTONE SET MILESTONENAME = :MILESTONENAME, 
+                                        MILESTONEDATE = :MILESTONEDATE, 
+                                        PROJECTID = :PROJECTID 
+                   WHERE MILESTONEID = :MILESTONEID"
+    DeleteCommand="DELETE FROM MILESTONE WHERE MILESTONEID = :MILESTONEID">
+
+    <DeleteParameters>
+        <asp:Parameter Name="MILESTONEID" Type="Decimal" />
+    </DeleteParameters>
+
+    <InsertParameters>
+        <asp:Parameter Name="MILESTONEID" Type="Decimal" />
+        <asp:Parameter Name="MILESTONENAME" Type="String" />
+        <asp:Parameter Name="MILESTONEDATE" Type="DateTime" />
+        <asp:Parameter Name="PROJECTID" Type="Decimal" />
+    </InsertParameters>
+
+    <UpdateParameters>
+        <asp:Parameter Name="MILESTONENAME" Type="String" />
+        <asp:Parameter Name="MILESTONEDATE" Type="DateTime" />
+        <asp:Parameter Name="PROJECTID" Type="Decimal" />
+        <asp:Parameter Name="MILESTONEID" Type="Decimal" /> 
+    </UpdateParameters>
+</asp:SqlDataSource>
+
+
+    <asp:SqlDataSource ID="SqlDataSourceProjects" runat="server"
+        ConnectionString="<%$ ConnectionStrings:ConnectionStringmain %>"
+        ProviderName="<%$ ConnectionStrings:ConnectionStringmain.ProviderName %>"
+        SelectCommand="SELECT PROJECTID, PROJECTNAME FROM PROJECT">
+    </asp:SqlDataSource>
 
 </asp:Content>
