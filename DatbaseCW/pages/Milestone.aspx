@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
    
-    <h3>Add/Update Milestone</h3>
+    <h3>List of Milestone</h3>
 
    
     <asp:FormView ID="FormView2" runat="server" DataKeyNames="MILESTONEID" 
@@ -18,7 +18,8 @@
             <asp:TextBox ID="MILESTONEDATETextBox" runat="server" Text='<%# Bind("MILESTONEDATE") %>' />
             <br />
             PROJECT ID:
-            <asp:DropDownList ID="PROJECTIDDropDown" runat="server" DataSourceID="SqlDataSourceProjects"
+            <asp:DropDownList ID="PROJECTIDDropDown" runat="server" 
+                DataSourceID="SqlDataSourceProjects"
                               DataTextField="PROJECTID" DataValueField="PROJECTID" 
                               SelectedValue='<%# Bind("PROJECTID") %>'>
             </asp:DropDownList>
@@ -27,9 +28,7 @@
             <asp:LinkButton ID="UpdateCancelButton" runat="server" CommandName="Cancel" Text="Cancel" />
         </EditItemTemplate>
 
-        <EditRowStyle BackColor="#738A9C" Font-Bold="True" ForeColor="#F7F7F7" />
-        <FooterStyle BackColor="#B5C7DE" ForeColor="#4A3C8C" />
-        <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#F7F7F7" />
+        
 
         <InsertItemTemplate>
             MILESTONEID:
@@ -73,7 +72,6 @@
     </asp:FormView>
 
       <br />
-  <h3>Milestone List</h3>
    
     <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                   DataKeyNames="MILESTONEID" DataSourceID="SqlDataSource2" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" Width="100%" CellPadding="10" GridLines="Horizontal">
@@ -85,7 +83,8 @@
             <asp:BoundField DataField="MILESTONEDATE" HeaderText="MILESTONEDATE" />
             <asp:TemplateField HeaderText="PROJECT ID">
                 <EditItemTemplate>
-                    <asp:DropDownList ID="PROJECTIDDropDownGrid" runat="server" DataSourceID="SqlDataSourceProjects"
+                    <asp:DropDownList ID="PROJECTIDDropDownGrid" runat="server" 
+                        DataSourceID="SqlDataSourceProjects"
                                       DataTextField="PROJECTID" DataValueField="PROJECTID" 
                                       SelectedValue='<%# Bind("PROJECTID") %>'>
                     </asp:DropDownList>
